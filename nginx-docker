@@ -1,0 +1,8 @@
+docker run --rm -d -p 80:80 -p 443:443 \
+    --name nginx-proxy-own \
+    -v /path/to/certs:/etc/nginx/certs:ro \
+    -v ./conf/body-size-100M.conf:/etc/nginx/conf.d/body-size-100M.conf  \
+    -v /etc/nginx/vhost.d \
+    -v /usr/share/nginx/html \
+    -v /var/run/docker.sock:/tmp/docker.sock:ro \
+    jwilder/nginx-proxy
