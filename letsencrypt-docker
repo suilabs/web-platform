@@ -1,5 +1,7 @@
+#!/bin/bash
+
 docker run -d \
--v /path/to/certs:/etc/nginx/certs:rw \
---volumes-from nginx-proxy \
--v /var/run/docker.sock:/var/run/docker.sock:ro \
-jrcs/letsencrypt-nginx-proxy-companion
+    -v ${PWD}/certs:/etc/nginx/certs:rw \
+    --volumes-from nginx-proxy \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    jrcs/letsencrypt-nginx-proxy-companion
