@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker run --rm -d -p 80:80 -p 443:443 \
-    --name nginx-proxy-own \
+    --name nginx-proxy \
     -v ${PWD}/certs:/etc/nginx/certs:ro \
     -v ${PWD}/conf/bodySize100M.conf:/etc/nginx/conf.d/bodySize100M.conf  \
     -v /etc/nginx/vhost.d \
