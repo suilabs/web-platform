@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -14,25 +14,17 @@ services:
       - /etc/nginx/vhost.d
       - /usr/share/nginx/html
       - ./conf/bodySize100M.conf:/etc/nginx/conf.d/bodySize100M.conf
-      - ./certs:/etc/nginx/certs:ro
-    networks:
-      - suilabs
+      - ./certs:/etc/nginx/certs
+    network_mode: webplatform_suilabs
+
 
   webPlatform:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: letsencrypt-nginx
     links:
       - nginx-proxy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./certs:/etc/nginx/certs:rw
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
-    networks:
-      - suilabs
+    volumes_from:
+      - nginx-proxy
+    network_mode: webplatform_suilabs
     depends_on:
       - nginx-proxy
-
-networks:
-  suilabs:
-    driver: bridge
