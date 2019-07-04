@@ -44,4 +44,4 @@ services:
       - nginx-proxy
 
 volumes:
-  portainer:
+  portainer_data:
