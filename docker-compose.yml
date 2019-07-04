@@ -17,7 +17,13 @@ services:
       - ./conf/bodySize100M.conf:/etc/nginx/conf.d/bodySize100M.conf
       - ./certs:/etc/nginx/certs
     network_mode: webplatform_suilabs
-
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 
   webPlatform:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -31,3 +37,6 @@ services:
     network_mode: webplatform_suilabs
     depends_on:
       - nginx-proxy
+
+volumes:
+  portainer:
