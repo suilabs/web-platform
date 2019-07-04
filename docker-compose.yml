@@ -21,6 +21,7 @@ services:
 
   webPlatform:
     image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
     container_name: letsencrypt-nginx
     volumes_from:
       - nginx-proxy
