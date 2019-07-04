@@ -24,6 +24,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    environment:
+      - VIRTUAL_HOST=docker.suilabs.com
+      - LETSENCRYPT_HOST=docker.suilabs.com
+      - LETSENCRYPT_EMAIL=borja.arias.upc@gmail.com
+
 
   webPlatform:
     image: jrcs/letsencrypt-nginx-proxy-companion
